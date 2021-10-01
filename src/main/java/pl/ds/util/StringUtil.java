@@ -36,8 +36,26 @@ public final class StringUtil {
      * @return true if the {@code string} contains a {@code pattern}, false otherwise.
      */
     public static boolean contains(String string, String pattern) {
-        // TODO: implement solution
-        return false;
+        return contains(string, pattern, false);
     }
 
+    private static boolean contains(String string, String pattern, boolean strict) {
+        if (string == null || pattern == null) return false;
+        if (pattern.isEmpty()) return true;
+        if (string.isEmpty()) return pattern.equals("*");
+
+        char term = pattern.charAt(0);
+        String substring = string.substring(1);
+        String subpattern = pattern.substring(1);
+
+        if (term == '*') {
+            return contains(substring, pattern, true) || contains(string, subpattern, false);
+        }
+        if (term == '\\' && pattern.length() > 1 && pattern.charAt(1) == '*') {
+            subpattern = pattern.substring(2);
+            term = '*';
+        }
+        return string.charAt(0) == term && contains(substring, subpattern, true) ||
+                !strict && contains(substring, pattern, false);
+    }
 }
