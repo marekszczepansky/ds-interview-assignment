@@ -21,6 +21,14 @@ Implement the `StringUtil.contains(String string, String pattern)` method to tak
 input parameters. The method must verify if the first parameter contains a pattern passed
 as the second parameter.
 
+A pattern may contain single or multiple wildcard characters `*`.
+Each occurrence of `*` in the `pattern` means that it can be a match for
+zero or more characters of the `string`.</p>
+
+Asterisk (*) is considered as a regular character, if it is preceded by a backslash (\)
+in a pattern. Backslash (\) is considered as a regular character in all cases other
+than preceding the asterisk (*).
+
 Implementation cannot use any standard library or third party utility methods operating
 on strings (`String.matches()`, `String.contains()`, `String.indexOf()`, etc.) or regular expressions.
 Methods like `String.toCharArray()`, `String.charAt()`, `String.length()`, etc. are allowed to use.
